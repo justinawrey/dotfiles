@@ -1,0 +1,13 @@
+[user]
+	name = Justin Awrey
+	email = awreyjustin@gmail.com
+[http]
+	postBuffer = 1048576000
+[core]
+	askpass = git-gui--askpass
+	excludesfile = /Users/justinawrey/.gitignore_global
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
