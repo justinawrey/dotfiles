@@ -1,0 +1,29 @@
+# Set up oh-my-posh prompt initialization
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh --config ~/.amro-custom.omp.json)"
+fi
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+# Quick way to see files in column view with colors for directories
+alias l="ls -1G"
+
+# default editor
+export EDITOR='nvim'
+
+path=("$HOME/.local/bin" $path)
+
+# export to sub-processes (make it inherited by child processes)
+export PATH
+
+SCRIPT_PATH="${0:a:h}"
+ZSHRC_ENV_PATH="$SCRIPT_PATH/.zshrc.env"
+ZSHRC_LOCAL_PATH="$SCRIPT_PATH/.zshrc.local"
+
+PATHS=($ZSHRC_ENV_PATH $ZSHRC_LOCAL_PATH)
+for p in $PATHS; do
+  if [ -f $p ]; then
+     source $p
+  fi
+done
