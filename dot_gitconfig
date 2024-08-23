@@ -6,6 +6,8 @@
 [core]
 	askpass = git-gui--askpass
 	excludesfile = /Users/justinawrey/.gitignore_global
+[pull]
+	rebase = true
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
