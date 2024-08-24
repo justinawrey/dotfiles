@@ -6,6 +6,8 @@
 [core]
 	excludesFile = ~/.gitignore.global
 [alias]
+	d = diff
+	a = add .
 	p = push
 	s = status
 	sh = "-c diff.external=difft show --ext-diff"
