@@ -9,6 +9,13 @@ echo "• installing packages from brewfile..."
 brew bundle install --global
 echo "• packages install complete!"
 
+
 echo "• sourcing ~/.zshrc..."
 source ~/.zshrc
+echo "• sourced ~/.zshrc!
+
+echo "• installing nerd font..."
+oh-my-posh font install meslo
+echo "• installed nerd font!"
+
 echo "• all done!"
