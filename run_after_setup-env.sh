@@ -12,7 +12,7 @@ echo "• packages install complete!"
 
 echo "• sourcing ~/.zshrc..."
 source ~/.zshrc
-echo "• sourced ~/.zshrc!
+echo "• sourced ~/.zshrc!"
 
 echo "• installing nerd font..."
 oh-my-posh font install meslo
