@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # need xcode command line tools and most importantly git before doing anything
 xcode-select --install
