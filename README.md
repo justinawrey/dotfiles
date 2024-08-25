@@ -13,7 +13,7 @@ sh -c "$(curl -fsLS get.chezmoi.io/lb)"
 chezmoi init --apply justinawrey
 ```
 
-3. Manually (:open_mouth:) open iTerm2 and select `~/.iterm2.json` as default profile
+3. Manually :open_mouth: open iTerm2 and select `~/.iterm2.json` as default profile
 
 3. Put your laptop away and be done :beers:
 
