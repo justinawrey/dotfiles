@@ -3,17 +3,12 @@ My personal dotfiles setup, using [`chezmoi`](https://www.chezmoi.io/) as a dotf
 
 ## New machine instructions
 
-1. Install `chezmoi` binary:
+1. Install `chezmoi` binary, initialize dotfiles repo, perform all necessary installations:
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io/lb)"
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply justinawrey
 ```
 
-2. Initialize dotfiles repo and perform all necessary installation
-```bash
-chezmoi init --apply justinawrey
-```
-
-3. Manually :open_mouth: open iTerm2 and select `~/.iterm2.json` as default profile
+2. Manually :open_mouth: open iTerm2 and select `~/.iterm2.json` as default profile
 
 3. Put your laptop away and be done :beers:
 
