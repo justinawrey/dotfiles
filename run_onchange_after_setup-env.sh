@@ -1,8 +1,14 @@
-#!/bin/sh
+#!/bin/zsh
 
 # install homebrew and install packages from homebrew bundle
+echo "• installing homebrew..."
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle install --global
+echo "• homebrew install complete!"
 
-# source new .zshrc
+echo "• installing packages from brewfile..."
+brew bundle install --global
+echo "• packages install complete!"
+
+echo "• sourcing ~/.zshrc..."
 source ~/.zshrc
+echo "• all done!"
