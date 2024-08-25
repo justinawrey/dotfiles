@@ -36,3 +36,7 @@ chezmoi init --apply justinawrey
 * Spotify
 * Google Chrome
 * Messenger
+
+## Todo
+- [ ] add nvim config
+- [ ] add script for installing homebrew and homebrew bundle
