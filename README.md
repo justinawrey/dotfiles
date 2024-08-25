@@ -3,9 +3,9 @@ My personal dotfiles setup, using [`chezmoi`](https://www.chezmoi.io/) as a dotf
 
 ## New machine instructions
 
-1. Install `chezmoi` binary, initialize dotfiles repo, perform all necessary installations:
+1. Locally run one-liner bootstrap script:
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply justinawrey
+cd ~; sh -c "$(curl -fsLS https://raw.githubusercontent.com/justinawrey/dotfiles/main/bootstrap.sh)"
 ```
 
 2. Manually :open_mouth: open iTerm2 and select `~/.iterm2.json` as default profile
@@ -13,6 +13,7 @@ sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply justinawrey
 3. Put your laptop away and be done :beers:
 
 ## Included in configuration
+
 **_Notable items, see repo contents for more detail:_**
 
 * [`Homebrew`](https://brew.sh/) (see [Brewfile](./dot_Brewfile) for list of packages installed by Homebrew)
@@ -33,5 +34,6 @@ sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply justinawrey
 * Messenger
 
 ## Todo
+
 - [ ] add nvim config
 - [ ] add script for installing homebrew and homebrew bundle
