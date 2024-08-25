@@ -1,3 +1,6 @@
+# Set up homebrew with PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Set up oh-my-posh prompt initialization
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config ~/.amro-custom.omp.json)"
