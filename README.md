@@ -1,6 +1,9 @@
 # dotfiles
 My personal dotfiles setup, using [`chezmoi`](https://www.chezmoi.io/) as a dotfiles manager.
 
+> [!WARNING]
+> macOS only.
+
 ## New machine instructions
 
 1. Locally run one-liner bootstrap script:
@@ -35,5 +38,5 @@ cd ~; sh -c "$(curl -fsLS https://raw.githubusercontent.com/justinawrey/dotfiles
 
 ## Todo
 
+- [x] ~~add script for installing homebrew and homebrew bundle~~
 - [ ] add nvim config
-- [ ] add script for installing homebrew and homebrew bundle
