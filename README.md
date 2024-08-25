@@ -18,7 +18,7 @@ chezmoi init --apply justinawrey
 3. Put your laptop away and be done :beers:
 
 ## Included in configuration
-**Notable items, see repo contents for more detail:**
+**_Notable items, see repo contents for more detail:_**
 
 * [`Homebrew`](https://brew.sh/) (see [Brewfile](./dot_Brewfile) for list of packages installed by Homebrew)
 * [`Neovim`](https://neovim.io/) and Neovim config
@@ -31,7 +31,7 @@ chezmoi init --apply justinawrey
 * [`fzf`](https://github.com/junegunn/fzf) for general purpose fuzzy finding
 * [`bat`](https://github.com/sharkdp/bat) and [`prettybat`](https://github.com/eth-p/bat-extras/blob/master/doc/prettybat.md)
 
-**Applications installed via [`Homebrew Cask`](https://github.com/Homebrew/homebrew-cask)**:
+**_Applications installed via [`Homebrew Cask`](https://github.com/Homebrew/homebrew-cask)_**:
 * iTerm2
 * Spotify
 * Google Chrome
