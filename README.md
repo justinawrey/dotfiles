@@ -39,4 +39,4 @@ cd ~; sh -c "$(curl -fsLS https://raw.githubusercontent.com/justinawrey/dotfiles
 ## Todo
 
 - [x] ~~add script for installing homebrew and homebrew bundle~~
-- [ ] add nvim config
+- [x] add nvim config
