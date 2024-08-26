@@ -1,2 +1,11 @@
 README.md
 bootstrap.sh
+run_after_setup-env.sh
+
+tags
+test.sh
+.luarc.json
+
+spell/
+lazy-lock.json
+.gitignore
