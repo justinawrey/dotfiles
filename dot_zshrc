@@ -12,6 +12,8 @@ eval "$(fzf --zsh)"
 # Quick way to see files in column view with colors for directories
 alias l="ls -1G"
 
+alias prettypath="print -l $path"
+
 # default editor
 export EDITOR='nvim'
 
