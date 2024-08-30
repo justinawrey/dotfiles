@@ -12,12 +12,11 @@ eval "$(fzf --zsh)"
 # Quick way to see files in column view with colors for directories
 alias l="ls -1G"
 
-alias prettypath="print -l $path"
-
 # default editor
 export EDITOR='nvim'
 
 path=("$HOME/.local/bin" $path)
+path=("$HOME/go/bin" $path)
 
 # export to sub-processes (make it inherited by child processes)
 export PATH
@@ -32,3 +31,7 @@ for p in $PATHS; do
      source $p
   fi
 done
+
+function prettypath {
+  print -l $path
+}
