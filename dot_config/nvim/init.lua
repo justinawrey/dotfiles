@@ -618,8 +618,18 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        denols = {},
+        jsonls = {},
+        cssls = {},
+        html = {},
+
+        tsserver = {
+          root_dir = require('lspconfig').util.root_pattern 'package.json',
+          single_file_support = false,
+        },
+
+        denols = {
+          root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
+        },
 
         lua_ls = {
           -- cmd = {...},
@@ -672,6 +682,7 @@ require('lazy').setup({
         'stylua', -- Used to format Lua code
         'csharpier', -- Used to format csharp code
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
@@ -722,7 +733,10 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        javascript = { 'prettierd' },
+        typescript = { 'prettierd' },
+        javascriptreact = { 'prettierd' },
+        typescriptreact = { 'prettierd' },
       },
     },
   },
