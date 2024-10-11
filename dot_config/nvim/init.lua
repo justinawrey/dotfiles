@@ -1,88 +1,5 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-========                                    .-----.          ========
-========         .----------------------.   | === |          ========
-========         |.-""""""""""""""""""-.|   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||   KICKSTART.NVIM   ||   |-----|          ========
-========         ||                    ||   | === |          ========
-========         ||                    ||   |-----|          ========
-========         ||:Tutor              ||   |:::::|          ========
-========         |'-..................-'|   |____o|          ========
-========         `"")----------------(""`   ___________      ========
-========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-========       /:::========|  |==hjkl==:::\  \ required \    ========
-========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-========                                                     ========
-=====================================================================
-=====================================================================
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-  Kickstart.nvim is a starting point for your own configuration.
-    The goal is that you can read every line of code, top-to-bottom, understand
-    what your configuration is doing, and modify it to suit your needs.
-
-    Once you've done that, you can start exploring, configuring and tinkering to
-    make Neovim your own! That might mean leaving Kickstart just the way it is for a while
-    or immediately breaking it into modular pieces. It's up to you!
-
-    If you don't know anything about Lua, I recommend taking some time to read through
-    a guide. One possible example which will only take 10-15 minutes:
-      - https://learnxinyminutes.com/docs/lua/
-
-    After understanding a bit more about Lua, you can use `:help lua-guide` as a
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-Kickstart Guide:
-
-  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
-
-    If you don't know what this means, type the following:
-      - <escape key>
-      - :
-      - Tutor
-      - <enter key>
-
-    (If you already know the Neovim basics, you can skip this step.)
-
-  Once you've completed that, you can continue working through **AND READING** the rest
-  of the kickstart init.lua.
-
-  Next, run AND READ `:help`.
-    This will open up a help window with some basic information
-    about reading, navigating and searching the builtin help documentation.
-
-    This should be the first place you go to look when you're stuck or confused
-    with something. It's one of my favorite Neovim features.
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
-
-  I have left several `:help X` comments throughout the init.lua
-    These are hints about where to find more information about the relevant settings,
-    plugins or Neovim features used in Kickstart.
-
-   NOTE: Look for lines like this
-
-    Throughout the file. These are for you, the reader, to help you understand what is happening.
-    Feel free to delete them once you know what you're doing, but they should serve as a guide
-    for when you are first encountering a few different constructs in your Neovim config.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now! :)
---]]
+vim.cmd.colorscheme 'retrobox'
+vim.opt.bg = 'light'
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -117,6 +34,9 @@ vim.opt.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.opt.breakindent = true
+
+-- Fuck you swap file
+vim.opt.swapfile = false
 
 -- Save undo history
 vim.opt.undofile = true
@@ -160,6 +80,9 @@ vim.opt.scrolloff = 20
 -- Easier exiting insert mode
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- A nicer way to enter terminal emulator
+vim.keymap.set('n', 'tt', ':vs | :terminal<CR> | :startinsert<CR>', { desc = 'Enter terminal mode' })
+
 -- Easier navigation in chunks
 vim.keymap.set('n', '<S-j>', '8j')
 vim.keymap.set('n', '<S-k>', '8k')
@@ -189,7 +112,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('t', 'tq', '<C-\\><C-n><cmd>q<CR>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -205,6 +128,11 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Dialpad specific shit.
+vim.keymap.set('n', '<leader>owc', '<cmd>cd ~/web-clients<CR>', { desc = 'Cd to web clients' })
+vim.keymap.set('n', '<leader>owcd', '<cmd>cd ~/web-clients-delivery<CR>', { desc = 'Cd to web clients' })
+vim.keymap.set('n', '<leader>of', '<cmd>cd ~/firespotter<CR>', { desc = 'Cd to web clients' })
 
 -- TODO: Deno specific, this needs to leave this file.
 vim.api.nvim_create_user_command('DenoRun', function()
@@ -252,7 +180,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'sindrets/diffview.nvim',
-  'Hoffs/omnisharp-extended-lsp.nvim',
+  -- 'Hoffs/omnisharp-extended-lsp.nvim',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -296,6 +224,24 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+    },
+  },
+
+  {
+    'f-person/git-blame.nvim',
+    -- load the plugin at startup
+    event = 'VeryLazy',
+    -- Because of the keys part, you will be lazy loading this plugin.
+    -- The plugin wil only load once one of the keys is used.
+    -- If you want to load the plugin at startup, add something like event = "VeryLazy",
+    -- or lazy = false. One of both options will work.
+    opts = {
+      -- your configuration comes here
+      -- for example
+      enabled = true, -- if you want to enable the plugin
+      message_template = ' <summary> • <date> • <author> • <<sha>>', -- template for the blame message, check the Message template section for more options
+      date_format = '%m-%d-%Y %H:%M:%S', -- template for the date, check Date format section for more options
+      virtual_text_column = 1, -- virtual text start column, check Start virtual text at column section for more options
     },
   },
 
@@ -412,7 +358,12 @@ require('lazy').setup({
             },
           },
         },
-        -- pickers = {}
+        pickers = {
+          colorscheme = {
+            enable_preview = true,
+          },
+        },
+
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -607,6 +558,12 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+      --
+
+      local mason_registry = require 'mason-registry'
+      local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
+      --
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -618,6 +575,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
+<<<<<<< Updated upstream
         jsonls = {},
         cssls = {},
         html = {},
@@ -630,6 +588,25 @@ require('lazy').setup({
         denols = {
           root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc'),
         },
+=======
+        tsserver = {
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+              },
+            },
+          },
+          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+        },
+
+        -- vue!
+        volar = {},
+
+        -- denols = {},
+>>>>>>> Stashed changes
 
         lua_ls = {
           -- cmd = {...},
@@ -647,24 +624,24 @@ require('lazy').setup({
         },
 
         -- omnisharp seems to be better than csharp_ls in terms of speed
-        omnisharp = {
-          capabilities = {
-            workspace = {
-              -- so new files created are picked up by the ls
-              didChangeWatchedFiles = {
-                dynamicRegistration = true,
-              },
-            },
-          },
-          -- extended lsp for decompilation of files in external dlls
-          -- TODO: this doesnt work?
-          handlers = {
-            ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
-            ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
-            ['textDocument/references'] = require('omnisharp_extended').references_handler,
-            ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
-          },
-        },
+        -- omnisharp = {
+        --   capabilities = {
+        --     workspace = {
+        --       -- so new files created are picked up by the ls
+        --       didChangeWatchedFiles = {
+        --         dynamicRegistration = true,
+        --       },
+        --     },
+        --   },
+        --   -- extended lsp for decompilation of files in external dlls
+        --   -- TODO: this doesnt work?
+        --   handlers = {
+        --     ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
+        --     ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
+        --     ['textDocument/references'] = require('omnisharp_extended').references_handler,
+        --     ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
+        --   },
+        -- },
       }
 
       -- Ensure the servers and tools above are installed
@@ -680,7 +657,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'csharpier', -- Used to format csharp code
+        -- 'csharpier', -- Used to format csharp code
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -727,16 +704,36 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        cs = { 'csharpier' },
+        -- cs = { 'csharpier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
+<<<<<<< Updated upstream
         javascript = { 'prettierd' },
         typescript = { 'prettierd' },
         javascriptreact = { 'prettierd' },
         typescriptreact = { 'prettierd' },
+=======
+        -- javascript = { { "prettierd", "prettier" } },
+
+        -- Document type thingies.
+        markdown = { 'prettier' },
+        yaml = { 'prettier' },
+
+        -- Non-code web thingies.
+        html = { 'prettier' },
+        css = { 'prettier' },
+        json = { 'prettier' },
+
+        -- JS!!!!!!!!!!!! (variants).
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        vue = { 'prettier' },
+>>>>>>> Stashed changes
       },
     },
   },
@@ -851,29 +848,6 @@ require('lazy').setup({
           { name = 'path' },
         },
       }
-    end,
-  },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    opts = {
-      -- TODO: Can be removed when https://github.com/folke/tokyonight.nvim/pull/620 is merged
-      plugins = { markdown = true },
-      transparent = true,
-    },
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
     end,
   },
 
